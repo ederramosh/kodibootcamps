@@ -12,6 +12,7 @@ import Image from 'next/image'
 type FormData = {
   email: string
   password: string
+  confirmPassword: string
 }
 
 export default function CreateNewUser() {
@@ -19,8 +20,12 @@ export default function CreateNewUser() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors }
   } = useForm<FormData>()
+
+  //PARA comparar PASSWORD USAMOS WATCH
+  const password = watch('password')
 
   const [message, setMessage] = useState<string | null>(null)
 
@@ -33,7 +38,12 @@ export default function CreateNewUser() {
     const { error } = await supabase.auth.signUp({ email, password })
 
     if (error) {
-      setMessage(`Error: ${error.message}`)
+       if ((error.message).toLowerCase().includes('already registered')) {
+          // SI EL CORREO YA EXISTE EN SUPABASE
+          setMessage('Este usuario ya existe')
+        } else {
+          setMessage(` Ocurrio un error, ${error.message}`)
+        }
     } else {
       setMessage(`Usuario registrado. Correo de confirmacion enviado a ${email}`)
       reset()
@@ -92,6 +102,22 @@ export default function CreateNewUser() {
               className="w-full border border-gray-300 px-4 py-2 rounded-md bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
             />
             {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm text-gray-700 mb-1">Confirmar contraseña</label>
+            <input
+              type="password"
+              {...register('confirmPassword', {
+                required: 'Confirmacion requerida',
+                validate: value => value === password || 'Las contraseñas no coinciden'
+              })}
+              placeholder="confirma tu contraseña"
+              className="w-full border border-gray-300 px-4 py-2 rounded-md bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+            )}
           </div>
 
           <button

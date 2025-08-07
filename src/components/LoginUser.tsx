@@ -70,7 +70,7 @@ export default function LoginUser() {
               required: 'Correo requerido',
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: 'Correo inválido'
+                message: 'Correo invalido'
               }
             })}
             placeholder="Escribe tu direccion de correo electronico"
@@ -86,7 +86,7 @@ export default function LoginUser() {
             type="password"
             {...register('password', {
               required: 'Contraseña requerida',
-              minLength: { value: 6, message: 'Mínimo 6 caracteres' }
+              minLength: { value: 6, message: 'Minimo 6 caracteres' }
             })}
             placeholder="Contraseña"
             className="w-full border border-gray-300 rounded px-4 py-2 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"

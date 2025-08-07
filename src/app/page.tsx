@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css'
 export default function Home() {
   return (
     <>
-      <ToastContainer />
-      <NavBarTestbed/>
-      <Dashboard/>
+       <ToastContainer />
+       <NavBarTestbed />
+       <Dashboard/>
     </>
   );
 }
