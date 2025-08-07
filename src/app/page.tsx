@@ -1,20 +1,15 @@
 
 import NavBarTestbed from "@/components/NavBarTestbed";
-import Image from "next/image";
-
+import Dashboard from "@/components/Dashboard";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Home() {
-
-
   return (
     <>
-      {//Quitar <NavBarTestbed/>
-      }
+      <ToastContainer />
       <NavBarTestbed/>
-      
-      <h1>Kodi Bootcamps</h1>
-
-      
+      <Dashboard/>
     </>
   );
 }
