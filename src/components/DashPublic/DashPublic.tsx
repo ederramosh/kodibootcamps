@@ -1,17 +1,14 @@
-'use client'; // Usamos el modo cliente para los hooks
+'use client'; 
 
 import React, { useState, useEffect } from "react";
 import Link from 'next/link';
-// Importamos el servicio de la API para obtener los bootcamps
 import { getBootcamps, BootcampResponse } from "@/api/supabase.api";
 
 export const DashPublic = () => {
-  // Creamos estados para los datos, la carga y los errores
   const [bootcamps, setBootcamps] = useState<BootcampResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Usamos useEffect para llamar a la API cuando el componente se monta
   useEffect(() => {
     const fetchBootcamps = async () => {
       try {
@@ -24,7 +21,7 @@ export const DashPublic = () => {
       }
     };
     fetchBootcamps();
-  }, []); // El array vacío asegura que se ejecute solo una vez
+  }, []); 
 
   return (
     <>
@@ -41,25 +38,35 @@ export const DashPublic = () => {
         </div>
       </header>
 
-     
-      {/* Sección del Programa (Temario) dinámico y simplificado */}
+      {/* Sección "Acerca de" */}
+      <section className="bg-red-500 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">El futuro de la programación te espera</h2>
+          <p className="text-lg text-black max-w-3xl mx-auto">
+            En Modigobootcamp, no solo aprenderás a programar, sino a construir aplicaciones completas y escalables. Te preparamos para los desafíos del mundo laboral con un enfoque práctico y centrado en las tecnologías más actuales.
+          </p>
+        </div>
+      </section>
+
+      {/* Sección del Programa (Temario) dinámico */}
       <section id="programa" className="bg-teal-600 py-20">
         <div className="container mx-auto px-4">
-         <h2 className="text-3xl font-bold text-black text-center mb-12">Nuestros bootcamps</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-black">Nuestros bootcamps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {isLoading && <p>Cargando bootcamps...</p>}
+            {isLoading && <p className="text-black">Cargando bootcamps...</p>}
             {error && <p className="text-red-500">Error: {error}</p>}
-
+            
             {bootcamps.map((bootcamp, index) => (
               <div 
                 key={index} 
                 className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300"
               >
-                <h3 className="text-xl font-bold mb-3 text-black">{bootcamp.title}</h3>
-                <p className="text-black">{bootcamp.synopsis}</p>
+                <h3 className="text-xl text-black font-bold mb-3">{bootcamp.title}</h3>
+                <p className="text-black text-gray-600">{bootcamp.synopsis}</p>
                 <div className="mt-4 text-sm text-black">
-                  <p>Precio: Solo para usuarios registrados</p>
-                  <p>Profesor: Solo para usuarios registrados</p>
+                  {/* Aquí mostramos el mensaje que invita a registrarse */}
+                  <p>Precio: Regístrate para más información</p>
+                  <p>Coach: Regístrate para más información</p>
                 </div>
               </div>
             ))}
@@ -68,13 +75,15 @@ export const DashPublic = () => {
       </section>
 
       {/* Sección de Llamada a la Acción (CTA) */}
-      <section className="bg-red-500 text-white py-20 text-center">
+      <section className="bg-white text-black py-20 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">¡Tu futuro como programador comienza aquí!</h2>
           <p className="text-lg md:text-xl mb-8">
-            Regístrate para recibir más información y dar el primer paso,   ¡Inscríbete ahora! </p>
-         
-       
+            Regístrate para recibir más información y dar el primer paso.
+          </p>
+          <Link href="#" className="bg-black text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
+            Inscríbete ahora
+          </Link>
         </div>
       </section>
 
@@ -84,6 +93,6 @@ export const DashPublic = () => {
           <p>&copy; 2025 Modigobootcamp. Todos los derechos reservados.</p>
         </div>
       </footer>
-    </>
-  );
-};
+      </>
+    )
+}

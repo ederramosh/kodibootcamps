@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const supabaseApi = axios.create({
+// Añade 'export' aquí para que pueda ser importado en otros archivos
+export const supabaseApi = axios.create({
     baseURL:process.env.NEXT_PUBLIC_SUPABASE_URL,
     headers: {
         "Content-Type": "application/json",

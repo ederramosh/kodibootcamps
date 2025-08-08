@@ -39,25 +39,25 @@ export default function NavBarTestbed() {
       
       {user ? (
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-300"> Hola: {user.email}</span>
+          <span className="text-sm text-black"> Hola: {user.email}</span>
           <button
             onClick={handleLogout}
-            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+            className="bg-red-500 text-white px-3 py-1 rounded-full shadow-lg hover:bg-red-600"
           >
-            Cerrar sesion
+            Cerrar sesión
           </button>
         </div>
       ) : (
         <div className="flex gap-2">
           <button
             onClick={() => router.push('/login')}
-            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-cyan-700"
+            className="bg-red-500 text-white px-3 py-1 rounded-full shadow-lg hover:bg-red-600"
           >
             Iniciar sesión
           </button>
           <button
             onClick={() => router.push('/signup')}
-            className="bg-teal-600 text-white px-3 py-1 rounded hover:bg-violet-700"
+            className="bg-teal-600 text-white px-3 py-1 rounded-full shadow-lg hover:bg-teal-700"
           >
             Nuevo usuario
           </button>
