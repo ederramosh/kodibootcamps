@@ -1,11 +1,35 @@
-import React from "react";
+'use client'; // Usamos el modo cliente para los hooks
+
+import React, { useState, useEffect } from "react";
 import Link from 'next/link';
+// Importamos el servicio de la API para obtener los bootcamps
+import { getBootcamps, BootcampResponse } from "@/api/supabase.api";
 
 export const DashPublic = () => {
-    return(
-        <>
-        {/* Sección de Cabecera (Hero) */}
-      <header className="bg-blue-600 text-white py-24">
+  // Creamos estados para los datos, la carga y los errores
+  const [bootcamps, setBootcamps] = useState<BootcampResponse[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Usamos useEffect para llamar a la API cuando el componente se monta
+  useEffect(() => {
+    const fetchBootcamps = async () => {
+      try {
+        const data = await getBootcamps();
+        setBootcamps(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchBootcamps();
+  }, []); // El array vacío asegura que se ejecute solo una vez
+
+  return (
+    <>
+      {/* Sección de Cabecera (Hero) */}
+      <header className="bg-red-500 text-white py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">¡Bienvenido a Modigobootcamp!</h1>
           <p className="text-xl md:text-2xl mb-8">
@@ -27,61 +51,33 @@ export const DashPublic = () => {
         </div>
       </section>
 
-      {/* Sección del Programa (Temario) simplificado */}
-      <section id="programa" className="bg-gray-200 py-20">
+      {/* Sección del Programa (Temario) dinámico y simplificado */}
+      <section id="programa" className="bg-teal-600 py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Un currículo diseñado para el éxito</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Nuestros bootcamps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Módulo 1 (simplificado) */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-              <h3 className="text-xl font-bold mb-3">Fundamentos Sólidos</h3>
-              <p className="text-gray-600">
-                Desde las bases de la web hasta los principios de la programación moderna.
-              </p>
-            </div>
-            {/* Módulo 2 (simplificado) */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-              <h3 className="text-xl font-bold mb-3">Tecnologías de Vanguardia</h3>
-              <p className="text-gray-600">
-                Domina frameworks y librerías clave como Next.js, React y Tailwind.
-              </p>
-            </div>
-            {/* Módulo 3 (simplificado) */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-              <h3 className="text-xl font-bold mb-3">Aplicaciones Completas</h3>
-              <p className="text-gray-600">
-                Aprende a conectar tus proyectos con bases de datos y a desplegarlos en la nube.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            {isLoading && <p>Cargando bootcamps...</p>}
+            {error && <p className="text-red-500">Error: {error}</p>}
 
-      {/* Sección de Testimonios */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Lo que dicen nuestros estudiantes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Testimonio 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="italic text-gray-600">
-                "El bootcamp me dio las bases sólidas que necesitaba para empezar mi carrera como desarrollador. Los proyectos prácticos fueron la clave."
-              </p>
-              <p className="mt-4 font-semibold">- Estudiante Satisfecho</p>
-            </div>
-            {/* Testimonio 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="italic text-gray-600">
-                "La combinación de Next.js y Supabase es increíble. Aprendí a construir aplicaciones robustas en poco tiempo. ¡Muy recomendado!"
-              </p>
-              <p className="mt-4 font-semibold">- Exalumno del Bootcamp</p>
-            </div>
+            {bootcamps.map((bootcamp, index) => (
+              <div 
+                key={index} 
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300"
+              >
+                <h3 className="text-xl font-bold mb-3 text-black">{bootcamp.title}</h3>
+                <p className="text-black">{bootcamp.synopsis}</p>
+                <div className="mt-4 text-sm text-black">
+                  <p>Precio: Solo para usuarios registrados</p>
+                  <p>Profesor: Solo para usuarios registrados</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Sección de Llamada a la Acción (CTA) */}
-      <section className="bg-blue-600 text-white py-20 text-center">
+      <section className="bg-blue-700 text-black py-20 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">¡Tu futuro como programador comienza aquí!</h2>
           <p className="text-lg md:text-xl mb-8">
@@ -99,6 +95,6 @@ export const DashPublic = () => {
           <p>&copy; 2025 Modigobootcamp. Todos los derechos reservados.</p>
         </div>
       </footer>
-      </>
-    )
-}
+    </>
+  );
+};
