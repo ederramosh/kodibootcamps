@@ -37,15 +37,22 @@ export default function CreateNewUser() {
     // SUPABASE AUTH, MANDAMOS AL USUARIO Y CONTRASEÑA
     const { error } = await supabase.auth.signUp({ email, password })
 
+      
     if (error) {
-       if ((error.message).toLowerCase().includes('already registered')) {
-          // SI EL CORREO YA EXISTE EN SUPABASE
-          setMessage('Este usuario ya existe')
-        } else {
-          setMessage(` Ocurrio un error, ${error.message}`)
-        }
+      const normalized = error.message.toLowerCase()
+
+      if (
+        normalized.includes('already registered') ||
+        normalized.includes('user already exists') ||
+        normalized.includes('duplicate') ||
+        normalized.includes('signups not allowed for this email')
+      ) {
+        setMessage('Este correo ya fue registrado.')
+      } else {
+        setMessage(`Error inesperado: ${error.message}`)
+      }
     } else {
-      setMessage(`Usuario registrado. Correo de confirmacion enviado a ${email}`)
+      setMessage(`Usuario registrado. Revisa tu correo: ${email}`)
       reset()
     }
   }
@@ -58,8 +65,8 @@ export default function CreateNewUser() {
           <Image
             src="https://res.cloudinary.com/daoy46bpe/image/upload/v1754265930/monigologolong_bfc5nb.png"
             alt="Logo"
-            width={160}
-            height={100}
+            width={190}
+            height={110}
             priority
           />
         </div>

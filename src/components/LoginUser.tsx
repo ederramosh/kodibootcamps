@@ -52,8 +52,8 @@ export default function LoginUser() {
         <Image
           src="https://res.cloudinary.com/daoy46bpe/image/upload/v1754263836/monigologo_xib4hu.png"
           alt="App logo"
-          width={100}
-          height={100}
+          width={140}
+          height={140}
           priority
         />
       </div>
