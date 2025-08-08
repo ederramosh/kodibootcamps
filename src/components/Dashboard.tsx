@@ -1,6 +1,5 @@
 'use client'
 
-
 import { useAuthentication } from '@/stores/useAuthentication'
 //import { DashPrivate } from './DashPrivate/DashPrivate'
 import { DashPublic } from './DashPublic/DashPublic'
@@ -8,8 +7,6 @@ import { DashPublic } from './DashPublic/DashPublic'
 import { BootCamps } from "@/components/Bootcamps/Bootcamps"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 const queryClient = new QueryClient()
-
-
 
 export default function Dashboard() {
 
@@ -20,7 +17,7 @@ export default function Dashboard() {
   const router = useRouter() */
 
   return (
-    <>
+    <div className="bg-teal-600 min-h-screen">
       {user ? (
         <div className="flex justify-center px-4">
           <QueryClientProvider client={queryClient}>
@@ -32,6 +29,6 @@ export default function Dashboard() {
           <DashPublic />
         </div>
       )}
-    </>
+    </div>
   )
 }

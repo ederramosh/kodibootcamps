@@ -51,13 +51,13 @@ export default function NavBarTestbed() {
         <div className="flex gap-2">
           <button
             onClick={() => router.push('/login')}
-            className="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700"
+            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-cyan-700"
           >
-            Iniciar sesion
+            Iniciar sesión
           </button>
           <button
             onClick={() => router.push('/signup')}
-            className="bg-violet-600 text-white px-3 py-1 rounded hover:bg-violet-700"
+            className="bg-teal-600 text-white px-3 py-1 rounded hover:bg-violet-700"
           >
             Nuevo usuario
           </button>

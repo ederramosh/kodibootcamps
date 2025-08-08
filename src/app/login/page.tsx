@@ -13,7 +13,9 @@ const page = () => {
   
 
   return (
+    <div className="bg-teal-600 min-h-screen flex items-center justify-center">
     <LoginUser/>
+     </div>
   )
 }
 
