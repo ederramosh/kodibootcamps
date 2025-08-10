@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+export interface BootcampResponse {
+  id: number;
+  title: string;
+  synopsis: string;
+}
+
 export const supabaseApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   headers: {

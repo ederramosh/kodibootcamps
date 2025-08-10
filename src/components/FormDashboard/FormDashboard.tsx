@@ -42,7 +42,7 @@ export const FormDashboard = () => {
     };
     return (
         <div className="bg-white shadow-xl rounded-lg p-8 max-w-3xl mx-auto mt-10">
-            <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">
+            <h2 className="text-3xl text-red-500 font-bold text-center text- mb-6">
                 Registro de Bootcamps
             </h2>
 
@@ -148,7 +148,7 @@ export const FormDashboard = () => {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md transition active:scale-95 disabled:opacity-50`}
+                        className={`w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-full transition active:scale-95 disabled:opacity-50`}
                     >
                         {isSubmitting ? 'Guardando...' : 'Guardar Bootcamp'}
                     </button>

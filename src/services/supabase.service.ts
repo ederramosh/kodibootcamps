@@ -9,7 +9,7 @@ export type BootcampData = {
     price: number
 }
 
-type BootcampResponse = {
+export type BootcampResponse = {
     title: string
     synopsis: string
     description: string
