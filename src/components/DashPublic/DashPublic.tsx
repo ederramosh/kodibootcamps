@@ -14,8 +14,8 @@ export const DashPublic = () => {
       try {
         const data = await getBootcamps();
         setBootcamps(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Ocurrió un error');
       } finally {
         setIsLoading(false);
       }
