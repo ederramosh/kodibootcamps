@@ -39,7 +39,7 @@ export default function NavBarTestbed() {
       
       {user ? (
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-300"> Hola: {user.email}</span>
+          <span className="text-sm text-gray-800"> Hola: {user.email}</span>
           <button
             onClick={handleLogout}
             className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
