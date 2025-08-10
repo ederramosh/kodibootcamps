@@ -1,3 +1,5 @@
+'use client'; 
+
 import { getBootcamp } from "@/services/supabase.service";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -31,9 +33,9 @@ export const BootCamps = () => {
         {isLoading && <p className="text-center text-gray-500">Cargando bootcamps...</p>}
         {error && <p className="text-center text-red-500">Error al cargar los bootcamps</p>}
 
-        {/* Lista en formato grid */}
+        {/* Lista en formato de columna */}
         {data && data.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-black p-6 rounded-lg shadow-inner">
+          <div className="flex flex-col gap-6 bg-black p-6 rounded-lg shadow-inner">
             {data.map((bootcamp) => (
               <div
                 key={bootcamp.created_at}
