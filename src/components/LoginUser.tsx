@@ -46,7 +46,7 @@ export default function LoginUser() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-400 flex items-center justify-center px-4">
+    <div >
       <div className="max-w-md mx-auto mt-16 p-8 bg-gray-100 rounded-lg shadow-lg">
 
         <div className="flex justify-center mb-6">
