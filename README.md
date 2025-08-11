@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Kodibootcamps
 
-## Getting Started
+Proyecto basado en [Next.js](https://nextjs.org), [Supabase](https://supabase.com/) y [Tailwind CSS](https://tailwindcss.com/).
 
-First, run the development server:
+---
+
+## 🚀 Instalación y configuración
+
+### 1. Clona el repositorio
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd kodibootcamps
+```
+
+### 2. Instala las dependencias
+
+```bash
+npm install
+# o
+yarn install
+# o
+pnpm install
+# o
+bun install
+```
+
+### 3. Configura las variables de entorno
+
+Copia el archivo de ejemplo y agrega tus claves de Supabase:
+
+```bash
+cp example.env .env.local
+```
+
+Edita `.env.local` y coloca tus valores:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key
+```
+
+### 4. Ejecuta el servidor de desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Estructura básica
 
-## Learn More
+- `/app` – Rutas y páginas principales (Next.js App Router)
+- `/components` – Componentes reutilizables
+- `/src/services` – Servicios y lógica de acceso a datos (Supabase)
+- `/src/stores` – Estado global (Zustand)
+- `/src/app/api` – Endpoints API personalizados
+- `/public` – Archivos estáticos
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Stack Tecnológico
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js
+- Supabase
+- Tailwind CSS
+- Zustand
+- React Hook Form
+- React Toastify
+- Axios
+- React Query
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ℹ️ Notas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- El archivo `.env.local` **no debe subirse al repositorio**.
+- Si tienes problemas con dependencias, ejecuta `npm install` nuevamente.
+- Para producción, asegúrate de tener las variables de entorno correctamente configuradas.
+
+---
+
+¡Listo! Ya puedes comenzar a desarrollar
